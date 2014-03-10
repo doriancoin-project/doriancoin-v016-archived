@@ -1,4 +1,4 @@
 obj/version.o: version.cpp version.h clientversion.h \
- /root/doriancoin/src/obj/build.h
+ /home/michael/git/doriancoin/src/obj/build.h
 version.cpp version.h clientversion.h :
- /root/doriancoin/src/obj/build.h :
+ /home/michael/git/doriancoin/src/obj/build.h :
