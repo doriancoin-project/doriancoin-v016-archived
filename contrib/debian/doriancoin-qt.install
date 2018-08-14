@@ -1,0 +1,6 @@
+usr/local/bin/doriancoin-qt usr/bin
+share/pixmaps/doriancoin32.xpm usr/share/pixmaps
+share/pixmaps/doriancoin16.xpm usr/share/pixmaps
+share/pixmaps/doriancoin128.png usr/share/pixmaps
+debian/doriancoin-qt.desktop usr/share/applications
+debian/doriancoin-qt.protocol usr/share/kde4/services/

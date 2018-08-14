@@ -1,0 +1,33 @@
+# /etc/conf.d/doriancoind: config file for /etc/init.d/doriancoind
+
+# Config file location
+#DORIANCOIND_CONFIGFILE="/etc/doriancoin/doriancoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $DORIANCOIND_USER)
+#DORIANCOIND_PIDDIR="/var/run/doriancoind"
+
+# What filename to give the pidfile
+#DORIANCOIND_PIDFILE="${DORIANCOIND_PIDDIR}/doriancoind.pid"
+
+# Where to write doriancoind data (be mindful that the blockchain is large)
+#DORIANCOIND_DATADIR="/var/lib/doriancoind"
+
+# User and group to own doriancoind process
+#DORIANCOIND_USER="doriancoin"
+#DORIANCOIND_GROUP="doriancoin"
+
+# Path to doriancoind executable
+#DORIANCOIND_BIN="/usr/bin/doriancoind"
+
+# Nice value to run doriancoind under
+#DORIANCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#DORIANCOIND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for doriancoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+DORIANCOIND_SIGTERM_TIMEOUT=60

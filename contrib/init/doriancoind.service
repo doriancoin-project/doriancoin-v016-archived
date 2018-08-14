@@ -1,0 +1,25 @@
+# It is not recommended to modify this file in-place, because it will
+# be overwritten during package upgrades. If you want to add further
+# options or overwrite existing ones then use
+# $ systemctl edit doriancoind.service
+# See "man systemd.service" for details.
+
+# Note that almost all daemon options could be specified in
+# /etc/doriancoin/doriancoin.conf
+
+[Unit]
+Description=Doriancoin daemon
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/doriancoind -daemon -conf=/etc/doriancoin/doriancoin.conf -pid=/run/doriancoind/doriancoind.pid
+# Creates /run/doriancoind owned by doriancoin
+RuntimeDirectory=doriancoind
+User=doriancoin
+Type=forking
+PIDFile=/run/doriancoind/doriancoind.pid
+Restart=on-failure
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
