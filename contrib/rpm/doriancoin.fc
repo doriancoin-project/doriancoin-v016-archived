@@ -1,0 +1,8 @@
+/usr/bin/doriancoin-cli		--	gen_context(system_u:object_r:doriancoin_exec_t,s0)
+/usr/sbin/doriancoind		--	gen_context(system_u:object_r:doriancoin_exec_t,s0)
+/usr/lib(64)?/doriancoin/doriancoind		--	gen_context(system_u:object_r:doriancoin_exec_t,s0)
+
+/etc/doriancoin(/.*)?		gen_context(system_u:object_r:doriancoin_conf_t,s0)
+/var/lib/doriancoin(/.*)?		gen_context(system_u:object_r:doriancoin_var_lib_t,s0)
+
+(/var)?/run/doriancoind(/.*)?   gen_context(system_u:object_r:doriancoin_var_run_t,s0)

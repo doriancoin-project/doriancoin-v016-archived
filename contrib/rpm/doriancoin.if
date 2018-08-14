@@ -1,0 +1,157 @@
+
+## <summary>policy for doriancoin</summary>
+
+
+########################################
+## <summary>
+##	Transition to doriancoin.
+## </summary>
+## <param name="domain">
+## <summary>
+##	Domain allowed to transition.
+## </summary>
+## </param>
+#
+interface(`doriancoin_domtrans',`
+	gen_require(`
+		type doriancoin_t, doriancoin_exec_t;
+	')
+
+	corecmd_search_bin($1)
+	domtrans_pattern($1, doriancoin_exec_t, doriancoin_t)
+')
+
+
+########################################
+## <summary>
+##	Execute doriancoin server in the doriancoin domain.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`doriancoin_initrc_domtrans',`
+	gen_require(`
+		type doriancoin_initrc_exec_t;
+	')
+
+	init_labeled_script_domtrans($1, doriancoin_initrc_exec_t)
+')
+
+
+########################################
+## <summary>
+##	Search doriancoin lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`doriancoin_search_lib',`
+	gen_require(`
+		type doriancoin_var_lib_t;
+	')
+
+	allow $1 doriancoin_var_lib_t:dir search_dir_perms;
+	files_search_var_lib($1)
+')
+
+########################################
+## <summary>
+##	Read doriancoin lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`doriancoin_read_lib_files',`
+	gen_require(`
+		type doriancoin_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	read_files_pattern($1, doriancoin_var_lib_t, doriancoin_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage doriancoin lib files.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`doriancoin_manage_lib_files',`
+	gen_require(`
+		type doriancoin_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_files_pattern($1, doriancoin_var_lib_t, doriancoin_var_lib_t)
+')
+
+########################################
+## <summary>
+##	Manage doriancoin lib directories.
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+#
+interface(`doriancoin_manage_lib_dirs',`
+	gen_require(`
+		type doriancoin_var_lib_t;
+	')
+
+	files_search_var_lib($1)
+	manage_dirs_pattern($1, doriancoin_var_lib_t, doriancoin_var_lib_t)
+')
+
+
+########################################
+## <summary>
+##	All of the rules required to administrate
+##	a doriancoin environment
+## </summary>
+## <param name="domain">
+##	<summary>
+##	Domain allowed access.
+##	</summary>
+## </param>
+## <param name="role">
+##	<summary>
+##	Role allowed access.
+##	</summary>
+## </param>
+## <rolecap/>
+#
+interface(`doriancoin_admin',`
+	gen_require(`
+		type doriancoin_t;
+		type doriancoin_initrc_exec_t;
+		type doriancoin_var_lib_t;
+	')
+
+	allow $1 doriancoin_t:process { ptrace signal_perms };
+	ps_process_pattern($1, doriancoin_t)
+
+	doriancoin_initrc_domtrans($1)
+	domain_system_change_exemption($1)
+	role_transition $2 doriancoin_initrc_exec_t system_r;
+	allow $2 system_r;
+
+	files_search_var_lib($1)
+	admin_pattern($1, doriancoin_var_lib_t)
+
+')
+
