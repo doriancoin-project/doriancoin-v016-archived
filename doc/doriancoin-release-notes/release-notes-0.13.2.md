@@ -888,8 +888,8 @@ For more information about segwit, please see the [segwit FAQ][], the
 [segwit wallet developers guide][] or BIPs [141][BIP141], [143][BIP143],
 [144][BIP144], and [145][BIP145].
 
-[Segwit FAQ]: https://doriancoincore.org/en/2016/01/26/segwit-benefits/
-[segwit wallet developers guide]: https://doriancoincore.org/en/segwit_wallet_dev/
+[Segwit FAQ]: https://bitcoincore.org/en/2016/01/26/segwit-benefits/
+[segwit wallet developers guide]: https://bitcoincore.org/en/segwit_wallet_dev/
 [BIP141]: https://github.com/doriancoin/bips/blob/master/bip-0141.mediawiki
 [BIP143]: https://github.com/doriancoin/bips/blob/master/bip-0143.mediawiki
 [BIP144]: https://github.com/doriancoin/bips/blob/master/bip-0144.mediawiki
