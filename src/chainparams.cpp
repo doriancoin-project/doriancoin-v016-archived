@@ -75,11 +75,11 @@ public:
     CMainParams() {
         strNetworkID = "main";
         consensus.nSubsidyHalvingInterval = 840000;
-        consensus.BIP16Height = 218579; // 372e7ef02fea5539ae89b334789d28b5f69d55b385983d355789a88a7a62481e - 6th Sep 2015 18:02:36
+        consensus.BIP16Height = 302983; // 25e3a6f26bd4b69dc9e2774ff39289e0b3e937f0888b3aae08cfbffec3541b65
         consensus.BIP34Height = 0;
         consensus.BIP34Hash = uint256S("d21da25e277bd20b7456087d69c5fee2ebc6091b410271b5cb0623c7d1e7d1b9");
-        consensus.BIP65Height = 300000; // e07995d7428de865e7463308a67a7c06eab50187b6e38f1d6cad8094665ac999
-        consensus.BIP66Height = 300000; // e07995d7428de865e7463308a67a7c06eab50187b6e38f1d6cad8094665ac999
+        consensus.BIP65Height = 302983; // 25e3a6f26bd4b69dc9e2774ff39289e0b3e937f0888b3aae08cfbffec3541b65
+        consensus.BIP66Height = 302983; // 25e3a6f26bd4b69dc9e2774ff39289e0b3e937f0888b3aae08cfbffec3541b65
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); 
         consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
         consensus.nPowTargetSpacing = 2.5 * 60;
