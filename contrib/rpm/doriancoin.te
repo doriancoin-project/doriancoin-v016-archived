@@ -1,0 +1,81 @@
+policy_module(doriancoin, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type doriancoin_t;
+type doriancoin_exec_t;
+init_daemon_domain(doriancoin_t, doriancoin_exec_t)
+
+permissive doriancoin_t;
+
+type doriancoin_initrc_exec_t;
+init_script_file(doriancoin_initrc_exec_t)
+
+type doriancoin_conf_t;
+files_type(doriancoin_conf_t)
+
+type doriancoin_var_lib_t;
+files_type(doriancoin_var_lib_t)
+
+type doriancoin_var_run_t;
+files_type(doriancoin_var_run_t)
+
+type doriancoin_port_t;
+corenet_port(doriancoin_port_t)
+
+########################################
+#
+# doriancoin local policy
+#
+allow doriancoin_t self:process { fork };
+
+allow doriancoin_t self:fifo_file rw_fifo_file_perms;
+allow doriancoin_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(doriancoin_t, doriancoin_conf_t, doriancoin_conf_t)
+manage_files_pattern(doriancoin_t, doriancoin_conf_t, doriancoin_conf_t)
+
+manage_dirs_pattern(doriancoin_t, doriancoin_var_lib_t, doriancoin_var_lib_t)
+manage_files_pattern(doriancoin_t, doriancoin_var_lib_t, doriancoin_var_lib_t)
+files_var_lib_filetrans(doriancoin_t, doriancoin_var_lib_t, { dir file })
+
+manage_dirs_pattern(doriancoin_t, doriancoin_var_run_t, doriancoin_var_run_t)
+manage_files_pattern(doriancoin_t, doriancoin_var_run_t, doriancoin_var_run_t)
+
+sysnet_dns_name_resolve(doriancoin_t)
+corenet_all_recvfrom_unlabeled(doriancoin_t)
+
+allow doriancoin_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(doriancoin_t)
+corenet_tcp_sendrecv_generic_node(doriancoin_t)
+corenet_tcp_sendrecv_all_ports(doriancoin_t)
+corenet_tcp_bind_generic_node(doriancoin_t)
+
+gen_require(`
+    type doriancoin_port_t;
+')
+allow doriancoin_t doriancoin_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type doriancoin_port_t;
+')
+allow doriancoin_t doriancoin_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(doriancoin_t)
+
+files_read_etc_files(doriancoin_t)
+
+miscfiles_read_localization(doriancoin_t)
+
+sysnet_dns_name_resolve(doriancoin_t)
+
+allow doriancoin_t doriancoin_exec_t:file execute_no_trans;
+allow doriancoin_t self:process setsched;
+corecmd_exec_ls(doriancoin_t)
+corenet_tcp_connect_http_port(doriancoin_t)
+dev_read_urand(doriancoin_t)
+fs_getattr_xattr_fs(doriancoin_t)
+kernel_read_system_state(doriancoin_t)

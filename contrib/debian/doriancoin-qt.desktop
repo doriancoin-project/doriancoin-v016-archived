@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Name=Doriancoin Core
+Comment=Connect to the Doriancoin P2P Network
+Comment[de]=Verbinde mit dem Doriancoin peer-to-peer Netzwerk
+Comment[fr]=Doriancoin, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Doriancoin, eşten eşe kriptografik sanal para birimi
+Exec=doriancoin-qt %u
+Terminal=false
+Type=Application
+Icon=doriancoin128
+MimeType=x-scheme-handler/doriancoin;
+Categories=Office;Finance;
+StartupWMClass=Doriancoin-qt
